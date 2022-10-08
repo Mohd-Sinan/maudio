@@ -32,7 +32,7 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
     RATE_MAX = 44100
     BIT_VALUES = [ 8 , 16 , 32 ]
 
-    FWPM = kwargs.pop("farns",wpm)
+    FARNS = kwargs.pop("farns",wpm)
     BITS = kwargs.pop("bits",16)
     RATE = kwargs.pop("rate",4410)
     AMP = kwargs.pop("amp",0.5)
@@ -40,7 +40,7 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
     if not ( WPM_MIN <= wpm <= WPM_MAX and isinstance(wpm,int) ):
         raise Exception("wpm should be and integer value between {} and {}".format(WPM_MIN,WPM_MAX))
 
-    if not ( WPM_MIN <= FWPM <= wpm and isinstance(FWPM,int) ):
+    if not ( WPM_MIN <= FARNS <= wpm and isinstance(FARNS,int) ):
         raise Exception("farns should be and integer value less than or equal to wpm and in the range ( {} - {} )".format(WPM_MIN,WPM_MAX))
 
     if len(filename) < 5 or filename[-4:] != '.wav':
@@ -62,7 +62,7 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
         raise Exception("cipher should only contain fullstops(dits) ,hyphens(dah) and spaces")
 
     dit_dur = float(60 / (50 * wpm))
-    fdit_dur = (60 / FWPM - 31 * dit_dur) / 19
+    fdit_dur = (60 / FARNS - 31 * dit_dur) / 19
 
     period  = int( RATE / frequency )
     sqr_sample = period * [0]
