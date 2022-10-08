@@ -4,7 +4,7 @@ from .MorseTable import forwardTable
 
 def get_cipher(message):
     cipher = ''
-    for letter in " ".join(message.upper().split()):
+    for letter in message.upper():
         if letter != ' ':
             try:
                 cipher += forwardTable[letter] + ' '

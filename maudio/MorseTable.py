@@ -1,6 +1,6 @@
 """
-MorseTable.py is forked from
-`````````````    ^^^^^^
+morseTable.py morse.py play.py are forked from
+````````````` ```````` ```````     ^^^^^^
 https://github.com/cduck/morse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 and have modified
