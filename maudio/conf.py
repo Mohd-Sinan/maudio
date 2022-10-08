@@ -4,7 +4,7 @@ from .MorseTable import forwardTable
 
 def get_cipher(message):
     cipher = ''
-    for letter in message.upper():
+    for letter in " ".join(message.upper().split()):
         if letter != ' ':
             try:
                 cipher += forwardTable[letter] + ' '
@@ -14,25 +14,49 @@ def get_cipher(message):
             cipher += ' '
     return cipher
 
-def get_audio( cipher , filename , wpm , fwpm=None , frequency=600 ):
+def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
 
     start = time.time()
 
     CHANNEL_NO = 1
-    BITS = 16
-    RATE = 4410
-    AMP = 0.5
 
-    try:
-        fwpm = int(wpm) if fwpm is None else int(fwpm)
-    except ValueError:
-        raise ValueError(" wpm ,fwpm should be a numeric value")
+    for key in kwargs:
+        if key not in [ "farns" , "amp" , "bits" , "rate" ]:
+            raise TypeError("Unknown argument \"{}\"".format(key))
 
-    if filename[-4:] != '.wav':
+    WPM_MIN = 5
+    WPM_MAX = 100
+    FREQ_MIN = 600
+    FREQ_MAX = 1000
+    RATE_MIN = 1000
+    RATE_MAX = 44100
+    BIT_VALUES = [ 8 , 16 , 32 ]
+
+    fwpm = kwargs.pop("farns",wpm)
+    BITS = kwargs.pop("bits",16)
+    RATE = kwargs.pop("rate",4410)
+    AMP = kwargs.pop("amp",0.5)
+
+    if not ( WPM_MIN <= wpm <= WPM_MAX and isinstance(wpm,int) ):
+        raise Exception("wpm should be and integer value between {} and {}".format(WPM_MIN,WPM_MAX))
+
+    if not ( WPM_MIN <= fwpm <= wpm and isinstance(fwpm,int) ):
+        raise Exception("farns should be and integer value less than or equal to wpm and in the range ( {} - {} )".format(WPM_MIN,WPM_MAX))
+
+    if len(filename) < 5 or filename[-4:] != '.wav':
         filename +='.wav'
 
-    if  600 < frequency > 1000:
-        raise Exception("frequency should be between 600 and 1000 (in Hz)")
+    if not (FREQ_MIN <= frequency <= FREQ_MAX and isinstance(frequency,int) ):
+        raise Exception("frequency should be an integer value between {} and {} (in Hz)".format(FREQ_MIN,FREQ_MAX))
+
+    if BITS not in BIT_VALUES:
+        raise Exception("bits : Unsupported bit value")
+
+    if not ( RATE_MIN <= RATE <= RATE_MAX and isinstance(RATE,int) ):
+        raise Exception("rate should be and integer value between {} and {}".format(RATE_MIN,RATE_MAX))
+
+    if not ( 0 <= AMP <= 1 and ( isinstance(AMP,int) or isinstance(AMP,float) )):
+        raise Exception("amp should be a value between 0 and 1")
 
     if not all(x in ('-', '.' ,' ' ) for x in cipher):
         raise Exception("cipher should only contain fullstops(dits) ,hyphens(dah) and spaces")
