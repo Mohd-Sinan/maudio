@@ -1,5 +1,5 @@
 """
-morseTable.py are forked from
+MorseTable.py are forked from
 ````````````` ``` ^^^^^^
 https://github.com/cduck/morse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
