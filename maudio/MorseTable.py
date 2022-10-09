@@ -3,7 +3,7 @@ MorseTable.py is forked from
 ````````````` ``` ^^^^^^
 https://github.com/cduck/morse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-and have been modified
+and has been modified
 """
 
 forwardTable = {
