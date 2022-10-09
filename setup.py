@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 giturl=""
 
 setup(
-      name='Morse-audio',
+      name='maudio',
       version='0.0.1',
       author='Mohammed Sinan KH',
       maintainer='Mohammed Sinan KH',
@@ -17,7 +17,7 @@ setup(
       long_description=long_description,
       long_description_content_type='text/markdown',
       url=giturl,
-      packages=find_packages(),
+      packages=[ 'maudio' ,],
 
       classifiers=[
       'Development Status :: 3 - Alpha',
