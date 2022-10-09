@@ -35,7 +35,7 @@ setup(
 
       entry_points={
         'console_scripts': [
-        'maudio=maudio.__main__:main', #adding it later
+        'maudio=maudio.__main__:main',
           ],
       },
       project_urls={
