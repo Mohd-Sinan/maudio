@@ -50,10 +50,10 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
         raise Exception("frequency should be an integer value between {} and {} (in Hz)".format(FREQ_MIN,FREQ_MAX))
 
     if BITS not in BIT_VALUES:
-        raise Exception("bits : Unsupported bit value")
+        raise Exception("bits : Unsupported bit value \"{}\"".format(BITS))
 
     if not ( RATE_MIN <= RATE <= RATE_MAX and isinstance(RATE,int) ):
-        raise Exception("rate should be and integer value between {} and {}".format(RATE_MIN,RATE_MAX))
+        raise Exception("rate(sample rate) should be and integer value between {} and {}".format(RATE_MIN,RATE_MAX))
 
     if not ( 0 <= AMP <= 1 and ( isinstance(AMP,int) or isinstance(AMP,float) )):
         raise Exception("amp should be a value between 0 and 1")
