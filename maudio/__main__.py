@@ -3,8 +3,7 @@ import argparse
 from maudio import get_cipher,get_audio
 
 def main():
-    parser = argparse.ArgumentParser(description="jsofijejsjx",prog="maudio", usage="%(prog)s \"message\" [options]")
-    message = None
+    parser = argparse.ArgumentParser(description="description and help coming soon",prog="maudio", usage="%(prog)s \"message\" [options]")
 
     if sys.stdin.isatty():
         parser.add_argument("message",type=str,help="message to convert to morse")
@@ -23,7 +22,6 @@ def main():
     print(args)
 
     message = args.message if hasattr(args,"message") else sys.stdin.read()
-    TIME= None
 
     if args.noaudio:
         if args.verbose:
@@ -32,7 +30,7 @@ def main():
             print(get_cipher(message))
             sys.exit(0)
     try:
-        TIME = get_audio( get_cipher(message) , args.output , args.wpm , args.frequency , bits=args.bits , rate = args.sample_rate , amp=args.amplitude , farns=args.farns )
+        get_audio( get_cipher(message) , args.output , args.wpm , args.frequency , bits=args.bits , rate = args.sample_rate , amp=args.amplitude , farns=args.farns )
     except Exception as e:
         print(str(e))
         sys.exit(1)
