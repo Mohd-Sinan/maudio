@@ -20,6 +20,9 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
 
     CHANNEL_NO = 1
 
+    #Filter kwargs set to None
+    kwargs = {k: v for k, v in kwargs.items() if v}
+
     for key in kwargs:
         if key not in [ "farns" , "amp" , "bits" , "rate" ]:
             raise TypeError("Unknown argument \"{}\"".format(key))
@@ -28,7 +31,7 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
     WPM_MAX = 100
     FREQ_MIN = 600
     FREQ_MAX = 1000
-    RATE_MIN = 1000
+    RATE_MIN = 2000
     RATE_MAX = 44100
     BIT_VALUES = [ 8 , 16 , 32 ]
 

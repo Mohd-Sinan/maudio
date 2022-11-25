@@ -16,7 +16,7 @@ def main():
     parser.add_argument("-w","--wpm",type=int,default=18,metavar="")
     parser.add_argument("-a","--amplitude",type=float,default=0.5,metavar="")
     parser.add_argument("--noaudio",action="store_true")
-    parser.add_argument("--farns",type=int)
+    parser.add_argument("--farns",type=int,metavar="")
 
     args=parser.parse_args()
     print(args)
