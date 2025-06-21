@@ -1,8 +1,17 @@
-# maudio
+<pre>
+███╗   ███╗ █████╗ ██╗   ██╗██████╗ ██╗ ██████╗ 
+████╗ ████║██╔══██╗██║   ██║██╔══██╗██║██╔═══██╗
+██╔████╔██║███████║██║   ██║██║  ██║██║██║   ██║
+██║╚██╔╝██║██╔══██║██║   ██║██║  ██║██║██║   ██║
+██║ ╚═╝ ██║██║  ██║╚██████╔╝██████╔╝██║╚██████╔╝
+╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝ 
+**Minimal Morse code audio encoder**
+</pre>                                            
+
 
 ## About
 
-**maudio** is a command-line tool that converts text to Morse code and can optionally generate audio output. You can control tone frequency, sample rate, amplitude, bit depth, WPM, and more.
+**maudio** is a command-line tool that converts text to Morse code and can generate audio output. You can control tone frequency, sample rate, amplitude, bit depth, WPM, and more.
 
 ## Getting Started
 
@@ -55,6 +64,30 @@ maudio "SOS HELP" -f 700 -w 20 -v
 | `-a`, `--amplitude`     | Tone amplitude (0.0 to 1.0) (default: `0.5`)             |
 | `--noaudio`             | Skip audio generation; print Morse code only             |
 | `--farns`               | Apply Farnsworth timing with given WPM for spacing       |
+
+## Python Example
+
+```python
+from maudio import get_cipher, get_audio
+
+# Convert message to Morse code
+msg = "hello world"
+cipher = get_cipher(msg)
+print("Morse code:", cipher)
+
+# Generate audio from Morse code
+get_audio(
+    cipher,
+    output="output.wav",
+    wpm=18,
+    freq=600,
+    bits=16,
+    rate=44100,
+    amp=0.5,
+    farns=None
+)
+```
+
 
 ### Uninstall?
 
