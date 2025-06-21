@@ -10,7 +10,7 @@
 
 ## About
 
-**maudio** is a command-line tool that converts text to Morse code and can generate audio output. You can control tone frequency, sample rate, amplitude, bit depth, WPM, and more.
+**Maudio** is a command-line tool that converts text to Morse code and can generate audio output. You can control tone frequency, sample rate, amplitude, bit depth, WPM, and more.
 
 ## Getting Started
 
