@@ -3,10 +3,10 @@ import argparse
 from maudio import get_cipher,get_audio
 
 def main():
-    parser = argparse.ArgumentParser(description="description and help coming soon",prog="maudio", usage="%(prog)s \"message\" [options]")
+    parser = argparse.ArgumentParser(description="maudio is a command-line tool that converts text to morse code and can generate audio output file (WAV format).",prog="maudio", usage="%(prog)s \"message\" [options]")
 
     if sys.stdin.isatty():
-        parser.add_argument("message",type=str,help="message to convert to morse")
+        parser.add_argument("message",type=str,help="Message to convert to morse")
 
     parser.add_argument("-v","--verbose",action="store_true",help="Enable verbose output")
     parser.add_argument("-o","--output",type=str,default="temp.wav",metavar="",help="Output WAV file name (default: \'temp.wav\')")
