@@ -78,15 +78,18 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
 
     max_amplitude = float((int((2 ** BITS) / 2) - 1) * AMP)
 
-    nframes = RATE / period    #frames per second
+    dot_len = int(RATE * dit_dur)
+    dash_len = int(RATE * dit_dur * 3)
+
     sqr_bin = b''.join(struct.pack('h', int(i * max_amplitude)) for i in sqr_sample)
-    dit = sqr_bin * int( nframes * dit_dur )
-    dah = sqr_bin * int( nframes * dit_dur * 3)
+
+    dit = sqr_bin * (dot_len // period)
+    dah = sqr_bin * (dash_len // period)
 
     zero = struct.pack('h',0 )
-    intra_char = zero * period * int( nframes * dit_dur )
-    inter_char = zero * period * int( nframes * fdit_dur * 3 )
-    word_space = zero * period * int( nframes * fdit_dur * 7 )
+    intra_char = zero * int(RATE * dit_dur)
+    inter_char = zero * int(RATE * fdit_dur * 3)
+    word_space = zero * int(RATE * fdit_dur * 7)
 
     bins = [ dit , dah , intra_char , inter_char , word_space ]
 
@@ -96,29 +99,21 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
     w.setframerate( RATE ) # Sampling Frequency
     w.setcomptype('NONE','Not Compressed')
 
-    waveform = []
+    waveform = [3]
 
-    count = 0
     for signal in cipher:
-        if signal == '-':
-            waveform += [1]
-            if cipher[count + 1] != ' ':
-                    waveform += [2]
-        elif signal == '.':
-            waveform += [0]
-            if cipher[count + 1] != ' ':
-                waveform += [2]
-        elif signal == ' ' and cipher[count + 1] != ' ':
-            waveform += [3]
-        elif signal == ' ' and cipher[count + 1] == ' ':
-            waveform += [4]
-        else:
-            #Do nothing
-            pass
-        count += 1
-        if count == (len(cipher) -1):
-            waveform += [3]
-            break
+        if signal == '.':
+            waveform += [0,2]
+        elif signal == '-':
+            waveform += [1,2]
+        elif signal == ' ':
+            if waveform[-1] == 2:
+                waveform[-1] = 3
+            elif waveform[-1] == 3:
+                waveform[-1] = 4
+                
+    waveform += [3]
+
 
     #divide_chunks
     chunk_size = 5
