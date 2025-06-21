@@ -8,7 +8,7 @@ giturl="https://github.com/Mohd-Sinan/maudio"
 
 setup(
       name='maudio',
-      version='0.0.1',
+      version='0.0.2',
       author='Mohammed Sinan KH',
       maintainer='Mohammed Sinan KH',
       author_email='devsinankh123@gmail.com',
