@@ -25,12 +25,13 @@ def main():
     args.farns_desc = f"{args.farns} WPM" if args.farns else "disabled"
 
     if args.noaudio:
-            print(cipher if not args.verbose else f"\ncipher : {cipher}")
-            sys.exit(0)
+        cipher = get_cipher(message)
+        print(cipher if not args.verbose else f"\ncipher : {cipher}")
+        sys.exit(0)
 
     try:
         if args.verbose:
-            print("Parsed arguments:")
+            print("Audio Encoding Settings\n")
 
             args_dict = {
                 "frequency":   args.frequency,
@@ -44,9 +45,9 @@ def main():
             for k, v in args_dict.items():
                 print(f"{k:12}: {v}")
 
-        print(f"{'output':12}: {args.output}")
-        get_audio( get_cipher(message) , args.output , args.wpm , args.frequency , bits=args.bits , rate = args.sample_rate , amp=args.amplitude , farns=args.farns )
-
+        print(f"{'output_file':12}: {args.output}")
+        time_elapsed = get_audio( get_cipher(message) , args.output , args.wpm , args.frequency , bits=args.bits , rate = args.sample_rate , amp=args.amplitude , farns=args.farns )
+        print("\nTime elapsed: {}ms".format(time_elapsed))
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)

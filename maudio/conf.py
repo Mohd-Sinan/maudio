@@ -135,4 +135,4 @@ def get_audio( cipher , filename , wpm , frequency=600 , **kwargs):
         raise RuntimeError("wave.close() error , failed to write wav file during execution")
 
     end = time.time()
-    print("Time elapsed: {}ms".format(round((end - start) *1000,2)))
+    return round((end - start) *1000,2)
