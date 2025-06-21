@@ -10,7 +10,7 @@
 
 ## About
 
-**Maudio** is a command-line tool for generating Morse code audio in .wav format from plain text input. It allows configuration of tone frequency, sample rate, amplitude, bit depth, Morse speed (WPM), and optional Farnsworth spacing. Can also output Morse code as text without generating audio.
+**Maudio** is a command-line tool for generating Morse code audio in `.wav` format from plain text input. It allows configuration of tone frequency, sample rate, amplitude, bit depth, Morse speed (WPM), and optional Farnsworth spacing. Can also output Morse code as text without generating audio.
 
 ## Getting Started
 
