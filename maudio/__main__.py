@@ -11,7 +11,7 @@ def main():
     parser.add_argument("-v","--verbose",action="store_true")
     parser.add_argument("-o","--output",type=str,default="temp.wav",metavar="")
     parser.add_argument("-f","--frequency",type=int,default=600,metavar="")
-    parser.add_argument("-s","--sample-rate",type=int,default=4410,metavar="")
+    parser.add_argument("-s","--sample-rate",type=int,default=44100,metavar="")
     parser.add_argument("-b","--bits",type=int,default=16,metavar="")
     parser.add_argument("-w","--wpm",type=int,default=18,metavar="")
     parser.add_argument("-a","--amplitude",type=float,default=0.5,metavar="")
