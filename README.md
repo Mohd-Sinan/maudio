@@ -61,7 +61,7 @@ maudio "SOS HELP" -f 700 -w 20 -v
 | `-b`, `--bits`          | Bit depth (default: `16`)                                |
 | `-w`, `--wpm`           | Words per minute (speed) (default: `18`)                 |
 | `-a`, `--amplitude`     | Tone amplitude (0.0 to 1.0) (default: `0.5`)             |
-| `--noaudio`             | Outputs Morse code without generating audio.             |
+| `--noaudio`             | Prints Morse code without generating audio.              |
 | `--farns`               | Apply Farnsworth timing with given WPM for spacing       |
 
 ## Python Example
