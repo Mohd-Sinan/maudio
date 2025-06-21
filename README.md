@@ -2,11 +2,13 @@
 
 ## About
 
-## Getting started
+**maudio** is a command-line tool that converts text to Morse code and can optionally generate audio output. You can control tone frequency, sample rate, amplitude, bit depth, WPM, and more.
+
+## Getting Started
 
 ### Installation
 
-```
+```bash
 git clone https://github.com/Mohd-Sinan/maudio.git
 cd maudio
 pip install .
@@ -14,27 +16,43 @@ pip install .
 
 ### Usage
 
-use `maudio -h` to display help menu
+Use the tool like this:
 
+```bash
+maudio "your message here" [options]
 ```
-$ maudio -h
-usage: maudio "message" [options]
 
-description and help coming soon
+To display the help menu:
 
-positional arguments:
-  message              message to convert to morse
-
-options:
-  -h, --help           show this help message and exit
-  -v, --verbose
-  -o , --output
-  -f , --frequency
-  -s , --sample-rate
-  -b , --bits
-  -w , --wpm
-  -a , --amplitude
-  --noaudio
-  --farns
+```bash
+maudio -h
 ```
+
+You can also pipe input from another command:
+
+```bash
+echo "hello world" | maudio --noaudio
+```
+
+### Example
+
+```bash
+maudio "SOS HELP" -f 700 -w 20 -v
+```
+
+### CLI Options
+
+| Option                  | Description                                              |
+|-------------------------|----------------------------------------------------------|
+| `message`               | Positional argument: the message to convert to Morse     |
+| `-h`, `--help`          | Show help message and exit                               |
+| `-v`, `--verbose`       | Enable verbose output (i.e print the Morse cipher)       |
+| `-o`, `--output`        | Output WAV file name (default: `temp.wav`)               |
+| `-f`, `--frequency`     | Tone frequency in Hz (default: `600`)                    |
+| `-s`, `--sample-rate`   | Audio sample rate in Hz (default: `44100`)               |
+| `-b`, `--bits`          | Bit depth (default: `16`)                                |
+| `-w`, `--wpm`           | Words per minute (speed) (default: `18`)                 |
+| `-a`, `--amplitude`     | Tone amplitude (0.0 to 1.0) (default: `0.5`)             |
+| `--noaudio`             | Skip audio generation; use with verbose                  |
+| `--farns`               | Apply Farnsworth timing with given WPM for spacing       |
 
