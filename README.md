@@ -56,3 +56,8 @@ maudio "SOS HELP" -f 700 -w 20 -v
 | `--noaudio`             | Skip audio generation; print Morse code only             |
 | `--farns`               | Apply Farnsworth timing with given WPM for spacing       |
 
+### Uninstall?
+
+```bash
+pip uninstall maudio
+```
