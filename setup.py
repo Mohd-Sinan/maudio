@@ -11,7 +11,7 @@ setup(
       version='0.0.1',
       author='Mohammed Sinan KH',
       maintainer='Mohammed Sinan KH',
-      author_email='instasinan123@gmail.com',
+      author_email='devsinankh123@gmail.com',
       license='MIT',
       description='Minimal Morse code audio encoder ( WAV format )',
       long_description=long_description,
