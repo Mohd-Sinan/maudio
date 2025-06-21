@@ -19,20 +19,36 @@ def main():
     parser.add_argument("--farns",type=int,metavar="")
 
     args=parser.parse_args()
-    print(args)
 
     message = args.message if hasattr(args,"message") else sys.stdin.read()
 
+    args.farns_desc = f"{args.farns} WPM" if args.farns else "disabled"
+
     if args.noaudio:
-        if args.verbose:
-            print("cipher : {}".format(get_cipher(message)))
-        else:
-            print(get_cipher(message))
+            print(cipher if not args.verbose else f"\ncipher : {cipher}")
             sys.exit(0)
+
     try:
+        if args.verbose:
+            print("Parsed arguments:")
+
+            args_dict = {
+                "frequency":   args.frequency,
+                "sample_rate": args.sample_rate,
+                "bits":        args.bits,
+                "wpm":         args.wpm,
+                "amplitude":   args.amplitude,
+                "farns":       args.farns_desc,
+            }
+
+            for k, v in args_dict.items():
+                print(f"{k:12}: {v}")
+
+        print(f"{'output':12}: {args.output}")
         get_audio( get_cipher(message) , args.output , args.wpm , args.frequency , bits=args.bits , rate = args.sample_rate , amp=args.amplitude , farns=args.farns )
+
     except Exception as e:
-        print(str(e))
+        print(f"Error: {e}")
         sys.exit(1)
 
 
