@@ -16,6 +16,12 @@
 
 ### Installation
 
+Using pip:
+```bash
+pip install maudio
+```
+
+From repo:
 ```bash
 git clone https://github.com/Mohd-Sinan/maudio.git
 cd maudio
